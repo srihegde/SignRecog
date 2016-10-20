@@ -108,7 +108,7 @@ def getSparseOptFlow():
 		cap.release()
 
 
-def getDenseOptFlow():
+def getDenseOptFlow(enableShow):
 	filenames = getFiles()
 	ofAllVideos = []
 	for f in filenames:
@@ -142,7 +142,8 @@ def getDenseOptFlow():
 				#if cap.get(cv2.CAP_PROP_POS_FRAMES) == cap.get(cv2.CAP_PROP_FRAME_COUNT):
 				#		break
 
-				cv2.imshow('frame2',bgr)
+				if(enableShow == True):
+					cv2.imshow('frame2',bgr)
 				k = cv2.waitKey(30) & 0xff
 				if k == 27:
 					break
@@ -162,5 +163,5 @@ def getDenseOptFlow():
 	return ofAllVideos
 
 
-ofvectors = getDenseOptFlow()
+#ofvectors = getDenseOptFlow()
 # print ofvectors[0][0]

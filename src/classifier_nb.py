@@ -46,7 +46,6 @@ for i in xrange(len(videos)):
         video = video[:len(video)-5]
 
     start = 0
-    print 'hello'
     for j in xrange(words[i]):
         
         datapoint = video[start:start+wordSize[i]]
@@ -54,21 +53,11 @@ for i in xrange(len(videos)):
         datapoint = list(itertools.chain(*datapoint))
         datapoint = list(itertools.chain(*datapoint))
         datapoint = list(itertools.chain(*datapoint))
-        print 'liviing?'
         datapoints.append(datapoint)
-        print len(datapoint)
-        #print datapoint
-        print 'yayy!'
         start = start+wordSize[i]
-
-print datapoints
-print labels
 
 datapoints = np.asarray(datapoints)
 labels = np.asarray(labels)
-
-classifier = GaussianNB()
-classifier.fit(datapoints,labels)
 
 
     
