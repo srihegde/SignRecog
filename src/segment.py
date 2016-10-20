@@ -1,9 +1,13 @@
-###########################################################################
+#################################################################################
 # 
 # Segmenting and Tracking Skin Pixels
 # Author: Srinidhi Hegde
 # 
-###########################################################################
+# Changes made for openCV 2.4.13
+# 1. In func getDenseOptFlow, calcOpticalFlowFarneback changed to
+#             calcOpticalFlowFarneback(prvs,next, 0.5, 3, 15, 3, 5, 1.2, 0)
+# 2. In func getDenseOptFlow, if-break statement checking end of video removed
+#################################################################################
 
 from os import walk
 import cv2
@@ -127,7 +131,7 @@ def getDenseOptFlow():
 				
 				next = cv2.cvtColor(frame2,cv2.COLOR_BGR2GRAY)
 
-				flow = cv2.calcOpticalFlowFarneback(prvs,next, None, 0.5, 3, 15, 3, 5, 1.2, 0)
+				flow = cv2.calcOpticalFlowFarneback(prvs,next, 0.5, 3, 15, 3, 5, 1.2, 0)
 				ofFile.append(flow)
 
 				mag, ang = cv2.cartToPolar(flow[...,0], flow[...,1])
@@ -135,8 +139,8 @@ def getDenseOptFlow():
 				hsv[...,2] = cv2.normalize(mag,None,0,255,cv2.NORM_MINMAX)
 				bgr = cv2.cvtColor(hsv,cv2.COLOR_HSV2BGR)
 
-				if cap.get(cv2.CAP_PROP_POS_FRAMES) == cap.get(cv2.CAP_PROP_FRAME_COUNT):
-						break
+				#if cap.get(cv2.CAP_PROP_POS_FRAMES) == cap.get(cv2.CAP_PROP_FRAME_COUNT):
+				#		break
 
 				cv2.imshow('frame2',bgr)
 				k = cv2.waitKey(30) & 0xff
