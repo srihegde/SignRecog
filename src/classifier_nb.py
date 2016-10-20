@@ -21,8 +21,7 @@ with open('DiggedData.dat', 'r') as f:
         sentences.append(line[i][0])
         words.append(int(line[i][1].strip()))
         wordSize.append(int(line[i][3].strip()))
-        frameCount.append(int(line[i][2].strip()))
-        break        
+        frameCount.append(int(line[i][2].strip()))      
 
 
 for i in xrange(len(sentences)):
