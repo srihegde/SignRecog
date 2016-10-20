@@ -22,6 +22,8 @@ def segment(img):
 def getFiles():
 	for (_, _, filenames) in walk('../resources/videos/'):
 		break
+	filenames = sorted(filenames)
+	print filenames
 	return filenames
 
 
@@ -141,12 +143,11 @@ def getDenseOptFlow(enableShow):
 
 				#if cap.get(cv2.CAP_PROP_POS_FRAMES) == cap.get(cv2.CAP_PROP_FRAME_COUNT):
 				#		break
-
 				if(enableShow == True):
 					cv2.imshow('frame2',bgr)
-				k = cv2.waitKey(30) & 0xff
-				if k == 27:
-					break
+					k = cv2.waitKey(30) & 0xff
+					if k == 27:
+						break
 
 				# If saving of frame is reqd enable the following
 				# elif k == ord('s'):
@@ -163,5 +164,5 @@ def getDenseOptFlow(enableShow):
 	return ofAllVideos
 
 
-#ofvectors = getDenseOptFlow()
+#ofvectors = getDenseOptFlow(False)
 # print ofvectors[0][0]
